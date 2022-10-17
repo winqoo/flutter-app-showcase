@@ -32,7 +32,7 @@ class AppInitPresenter extends Cubit<AppInitViewModel> with CubitToCubitCommunic
 
   Future<void> onInit() async {
     await (await appInitUseCase
-        .execute() //
+        .execute()
         .observeStatusChanges((result) => emit(_model.copyWith(appInitResult: result)))
         .asyncFold(
           (fail) => navigator.showError(fail.displayableFailure()),

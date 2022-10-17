@@ -20,7 +20,6 @@ Future<void> main() async {
   late AppInitPresentationModel model;
   late AppInitPresenter presenter;
   late AppInitNavigator navigator;
-
   void _initMvp() {
     initParams = const AppInitInitialParams();
     model = AppInitPresentationModel.initial(
@@ -41,6 +40,7 @@ Future<void> main() async {
     setUp: () async {
       _initMvp();
       when(() => AppInitMocks.appInitUseCase.execute()).thenAnswer((_) => successFuture(unit));
+      when(() => navigator.openLogin(any())).thenAnswer((_) => Future.value());
     },
     pageBuilder: () => page,
   );
